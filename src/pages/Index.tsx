@@ -51,6 +51,12 @@ const Index = () => {
 
         <div className="max-w-5xl mx-auto px-4 pt-10 pb-14 md:pt-16 md:pb-20 relative z-10">
           <AnimatedSection animation="fadeInUp">
+            <div className="flex justify-center mb-5">
+              <img src={logoOvoLucrativo} alt="Ovo Lucrativo — Método de Ovos de Colher" className="w-48 md:w-64 h-auto drop-shadow-lg" />
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fadeInUp">
             <div className="flex justify-center mb-6">
               <div className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold font-heading tracking-wide" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))", color: "hsl(15 60% 14%)" }}>
                 <Flame className="w-4 h-4" />
