@@ -224,18 +224,30 @@ const Index = () => {
             <h2 className="font-heading font-bold text-2xl md:text-[38px] leading-tight text-center text-foreground">
               O que você vai <span className="text-primary">dominar</span>
             </h2>
-            <p className="text-muted-foreground text-center mt-2 text-base">Um conteúdo direto, lucrativo e fácil de aplicar</p>
+            <p className="text-muted-foreground text-center mt-2 text-base">5 módulos diretos, lucrativos e fáceis de aplicar</p>
             <div className="gold-divider" />
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-5 mt-10">
-            {conteudos.map((c, i) => (
-              <AnimatedSection key={c.title} animation="fadeInUp" delay={i * 0.08}>
-                <div className="premium-panel p-7 text-center h-full hover:-translate-y-1 transition-transform duration-300">
-                  <div className="icon-chip mx-auto mb-4">
-                    <c.icon className="w-6 h-6" />
+
+          <div className="mt-10 space-y-5">
+            {modulos.map((m, i) => (
+              <AnimatedSection key={m.title} animation={i % 2 === 0 ? "fadeInLeft" : "fadeInRight"} delay={i * 0.08}>
+                <div className={`premium-panel overflow-hidden flex flex-col ${i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+                  <div className="md:w-2/5 relative overflow-hidden">
+                    <img src={m.img} alt={m.title} className="w-full h-48 md:h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    <div className="absolute top-3 left-3 w-10 h-10 rounded-xl flex items-center justify-center font-heading font-black text-sm" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))", color: "hsl(15 60% 14%)" }}>
+                      {m.num}
+                    </div>
                   </div>
-                  <h3 className="font-heading font-bold text-foreground text-lg">{c.title}</h3>
-                  <p className="text-muted-foreground mt-2 text-sm leading-relaxed">{c.desc}</p>
+                  <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="icon-chip">
+                        <m.icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-xs font-bold font-heading tracking-widest text-primary uppercase">Módulo {m.num}</span>
+                    </div>
+                    <h3 className="font-heading font-bold text-foreground text-xl md:text-2xl leading-snug">{m.title}</h3>
+                    <p className="text-muted-foreground mt-2 text-sm md:text-base leading-relaxed">{m.desc}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}
