@@ -9,6 +9,7 @@ import eggPrestigio from "@/assets/egg-prestigio.jpg";
 import eggMaracuja from "@/assets/egg-maracuja.jpg";
 import eggKinder from "@/assets/egg-kinder.jpg";
 import heroEggs from "@/assets/hero-eggs.jpg";
+import logoOvoLucrativo from "@/assets/logo-ovo-lucrativo.png";
 
 const eggs = [
   { name: "Brigadeiro", img: eggBrigadeiro },
@@ -49,6 +50,12 @@ const Index = () => {
         <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-[0.05]" style={{ background: "radial-gradient(circle, hsl(38 85% 55%), transparent 70%)", transform: "translate(-40%, 40%)" }} />
 
         <div className="max-w-5xl mx-auto px-4 pt-10 pb-14 md:pt-16 md:pb-20 relative z-10">
+          <AnimatedSection animation="fadeInUp">
+            <div className="flex justify-center mb-5">
+              <img src={logoOvoLucrativo} alt="Ovo Lucrativo — Método de Ovos de Colher" className="w-48 md:w-64 h-auto drop-shadow-lg" />
+            </div>
+          </AnimatedSection>
+
           <AnimatedSection animation="fadeInUp">
             <div className="flex justify-center mb-6">
               <div className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold font-heading tracking-wide" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))", color: "hsl(15 60% 14%)" }}>
@@ -302,6 +309,9 @@ const Index = () => {
               </div>
 
               <div className="p-7 md:p-10 text-center">
+                <div className="flex justify-center mb-4">
+                  <img src={logoOvoLucrativo} alt="Ovo Lucrativo" className="w-36 md:w-44 h-auto drop-shadow-md" />
+                </div>
                 <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground">Mini Curso Completo</h2>
                 <p className="font-heading font-extrabold text-2xl md:text-3xl text-primary mt-1">Ovo de Colher Lucrativo</p>
                 <div className="gold-divider" />
