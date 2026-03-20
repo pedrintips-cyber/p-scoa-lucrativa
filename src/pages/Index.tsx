@@ -110,7 +110,7 @@ const Index = () => {
 
           <AnimatedSection animation="bounceIn" delay={0.3}>
             <div className="mt-4 flex flex-col items-center gap-1.5">
-              <CTAButton text="QUERO GANHAR DINHEIRO NA PÁSCOA" variant="dark" className="text-[11px] md:text-base" href="/checkout" />
+              <CTAButton text="QUERO GANHAR DINHEIRO NA PÁSCOA" variant="dark" className="text-[11px] md:text-base" href="https://pay.lowify.com.br/checkout.php?product_id=G0sC2i" />
               <p className="text-[9px] md:text-[11px] font-medium flex items-center gap-1" style={{ color: "hsl(38 85% 65%)" }}>
                 <ShieldCheck className="w-2.5 h-2.5" />
                 Acesso imediato · 7 dias de garantia
@@ -356,7 +356,7 @@ const Index = () => {
 
               {/* CTA */}
               <div className="px-5 pt-1 pb-2">
-                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" href="/checkout" />
+                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" href="https://pay.lowify.com.br/checkout.php?product_id=G0sC2i" />
               </div>
 
               {/* Trust */}
@@ -414,7 +414,7 @@ const Index = () => {
               A Páscoa está chegando. Comece hoje e fature alto.
             </p>
             <div className="mt-4">
-              <CTAButton text="QUERO COMEÇAR AGORA" className="text-[11px]" href="/checkout" />
+              <CTAButton text="QUERO COMEÇAR AGORA" className="text-[11px]" href="https://pay.lowify.com.br/checkout.php?product_id=G0sC2i" />
             </div>
             <p className="text-[8px] mt-1.5 flex items-center justify-center gap-1 text-muted-foreground">
               <ShieldCheck className="w-2.5 h-2.5 text-primary" />
