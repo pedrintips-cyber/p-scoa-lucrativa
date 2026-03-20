@@ -1,6 +1,6 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import CTAButton from "@/components/CTAButton";
-import { Check, Gift, ShieldCheck, ChefHat, DollarSign, Rocket, BookOpen, Award, Users, Play, Clock, TrendingUp, Flame, Crown, CupSoda } from "lucide-react";
+import { Check, Gift, ShieldCheck, ChefHat, DollarSign, Rocket, BookOpen, Award, Users, Play, Clock, TrendingUp, Flame, Crown, CupSoda, Star, Lock, Zap, Heart, Eye, Sparkles } from "lucide-react";
 
 import eggBrigadeiro from "@/assets/egg-brigadeiro.jpg";
 import eggNinho from "@/assets/egg-ninho.jpg";
