@@ -9,6 +9,7 @@ import eggPrestigio from "@/assets/egg-prestigio.jpg";
 import eggMaracuja from "@/assets/egg-maracuja.jpg";
 import eggKinder from "@/assets/egg-kinder.jpg";
 import heroEggs from "@/assets/hero-eggs.jpg";
+import logoOvoLucrativo from "@/assets/logo-ovo-lucrativo.png";
 
 const eggs = [
   { name: "Brigadeiro", img: eggBrigadeiro },
