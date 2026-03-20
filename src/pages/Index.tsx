@@ -356,7 +356,7 @@ const Index = () => {
 
               {/* CTA */}
               <div className="px-5 pt-1 pb-2">
-                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" href="/checkout" />
+                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" href="https://pay.lowify.com.br/checkout.php?product_id=G0sC2i" />
               </div>
 
               {/* Trust */}
