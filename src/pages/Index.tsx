@@ -356,7 +356,7 @@ const Index = () => {
 
               {/* CTA */}
               <div className="px-5 pt-1 pb-2">
-                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" />
+                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" href="/checkout" />
               </div>
 
               {/* Trust */}
