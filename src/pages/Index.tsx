@@ -10,6 +10,11 @@ import eggMaracuja from "@/assets/egg-maracuja.jpg";
 import eggKinder from "@/assets/egg-kinder.jpg";
 import heroEggs from "@/assets/hero-eggs.jpg";
 import logoOvoLucrativo from "@/assets/logo-ovo-lucrativo.png";
+import moduloReceitas from "@/assets/modulo-receitas.jpg";
+import moduloTecnicas from "@/assets/modulo-tecnicas.jpg";
+import moduloMontagem from "@/assets/modulo-montagem.jpg";
+import moduloPrecificacao from "@/assets/modulo-precificacao.jpg";
+import moduloVendas from "@/assets/modulo-vendas.jpg";
 
 const eggs = [
   { name: "Brigadeiro", img: eggBrigadeiro },
@@ -28,12 +33,12 @@ const paraQuem = [
   "Quer aumentar sua renda com um produto premium",
 ];
 
-const conteudos = [
-  { icon: BookOpen, title: "Receitas Exclusivas", desc: "Passo a passo detalhado de cada sabor com medidas exatas e acabamento profissional" },
-  { icon: ChefHat, title: "Técnicas de Preparo", desc: "Segredos para deixar seu recheio cremoso, estruturado e com aparência de vitrine" },
-  { icon: Award, title: "Montagem Premium", desc: "Aprenda a montar ovos que impressionam, valorizam seu produto e vendem mais fácil" },
-  { icon: DollarSign, title: "Precificação Inteligente", desc: "Saiba quanto cobrar para não sair no prejuízo e maximizar seu lucro" },
-  { icon: Rocket, title: "Estratégias de Venda", desc: "Métodos simples para vender rápido, criar desejo e aproveitar a sazonalidade" },
+const modulos = [
+  { num: "01", title: "Receitas Exclusivas", desc: "Passo a passo detalhado de cada sabor com medidas exatas e acabamento profissional que vende", img: moduloReceitas, icon: BookOpen },
+  { num: "02", title: "Técnicas de Preparo", desc: "Segredos para deixar seu recheio cremoso, estruturado e com aparência de vitrine", img: moduloTecnicas, icon: ChefHat },
+  { num: "03", title: "Montagem Premium", desc: "Aprenda a montar ovos que impressionam, valorizam seu produto e vendem mais fácil", img: moduloMontagem, icon: Award },
+  { num: "04", title: "Precificação Inteligente", desc: "Saiba quanto cobrar para não sair no prejuízo e maximizar seu lucro em cada ovo", img: moduloPrecificacao, icon: DollarSign },
+  { num: "05", title: "Estratégias de Venda", desc: "Métodos simples para vender rápido, criar desejo e aproveitar a sazonalidade da Páscoa", img: moduloVendas, icon: Rocket },
 ];
 
 const bonus = [
@@ -219,18 +224,30 @@ const Index = () => {
             <h2 className="font-heading font-bold text-2xl md:text-[38px] leading-tight text-center text-foreground">
               O que você vai <span className="text-primary">dominar</span>
             </h2>
-            <p className="text-muted-foreground text-center mt-2 text-base">Um conteúdo direto, lucrativo e fácil de aplicar</p>
+            <p className="text-muted-foreground text-center mt-2 text-base">5 módulos diretos, lucrativos e fáceis de aplicar</p>
             <div className="gold-divider" />
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-5 mt-10">
-            {conteudos.map((c, i) => (
-              <AnimatedSection key={c.title} animation="fadeInUp" delay={i * 0.08}>
-                <div className="premium-panel p-7 text-center h-full hover:-translate-y-1 transition-transform duration-300">
-                  <div className="icon-chip mx-auto mb-4">
-                    <c.icon className="w-6 h-6" />
+
+          <div className="mt-10 space-y-5">
+            {modulos.map((m, i) => (
+              <AnimatedSection key={m.title} animation={i % 2 === 0 ? "fadeInLeft" : "fadeInRight"} delay={i * 0.08}>
+                <div className={`premium-panel overflow-hidden flex flex-col ${i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+                  <div className="md:w-2/5 relative overflow-hidden">
+                    <img src={m.img} alt={m.title} className="w-full h-48 md:h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    <div className="absolute top-3 left-3 w-10 h-10 rounded-xl flex items-center justify-center font-heading font-black text-sm" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))", color: "hsl(15 60% 14%)" }}>
+                      {m.num}
+                    </div>
                   </div>
-                  <h3 className="font-heading font-bold text-foreground text-lg">{c.title}</h3>
-                  <p className="text-muted-foreground mt-2 text-sm leading-relaxed">{c.desc}</p>
+                  <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="icon-chip">
+                        <m.icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-xs font-bold font-heading tracking-widest text-primary uppercase">Módulo {m.num}</span>
+                    </div>
+                    <h3 className="font-heading font-bold text-foreground text-xl md:text-2xl leading-snug">{m.title}</h3>
+                    <p className="text-muted-foreground mt-2 text-sm md:text-base leading-relaxed">{m.desc}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}
