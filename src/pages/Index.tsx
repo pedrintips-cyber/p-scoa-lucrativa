@@ -110,7 +110,7 @@ const Index = () => {
 
           <AnimatedSection animation="bounceIn" delay={0.3}>
             <div className="mt-4 flex flex-col items-center gap-1.5">
-              <CTAButton text="QUERO GANHAR DINHEIRO NA PÁSCOA" variant="dark" className="text-[11px] md:text-base" />
+              <CTAButton text="QUERO GANHAR DINHEIRO NA PÁSCOA" variant="dark" className="text-[11px] md:text-base" href="/checkout" />
               <p className="text-[9px] md:text-[11px] font-medium flex items-center gap-1" style={{ color: "hsl(38 85% 65%)" }}>
                 <ShieldCheck className="w-2.5 h-2.5" />
                 Acesso imediato · 7 dias de garantia
@@ -324,15 +324,15 @@ const Index = () => {
 
               {/* Preço */}
               <div className="px-5 py-2 text-center">
-                <p className="text-muted-foreground line-through text-[10px]">De R$ 197,00</p>
+                <p className="text-muted-foreground line-through text-[10px]">De R$ 97,00</p>
                 <div className="flex items-baseline justify-center gap-0.5">
                   <span className="text-muted-foreground text-[11px] font-medium">R$</span>
-                  <span className="font-heading font-black text-[44px] leading-none text-primary">47</span>
-                  <span className="font-heading font-bold text-sm text-primary">,00</span>
+                  <span className="font-heading font-black text-[44px] leading-none text-primary">24</span>
+                  <span className="font-heading font-bold text-sm text-primary">,90</span>
                 </div>
                 <div className="inline-flex items-center gap-1 mt-0.5 rounded-full px-2.5 py-0.5 text-[9px] font-bold" style={{ background: "hsl(var(--gold) / 0.1)", color: "hsl(var(--primary))" }}>
                   <Zap className="w-2.5 h-2.5" />
-                  ou 5x de R$ 10,14
+                  ou 3x de R$ 8,96
                 </div>
               </div>
 
@@ -356,7 +356,7 @@ const Index = () => {
 
               {/* CTA */}
               <div className="px-5 pt-1 pb-2">
-                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" />
+                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" href="/checkout" />
               </div>
 
               {/* Trust */}
@@ -414,7 +414,7 @@ const Index = () => {
               A Páscoa está chegando. Comece hoje e fature alto.
             </p>
             <div className="mt-4">
-              <CTAButton text="QUERO COMEÇAR AGORA" className="text-[11px]" />
+              <CTAButton text="QUERO COMEÇAR AGORA" className="text-[11px]" href="/checkout" />
             </div>
             <p className="text-[8px] mt-1.5 flex items-center justify-center gap-1 text-muted-foreground">
               <ShieldCheck className="w-2.5 h-2.5 text-primary" />
