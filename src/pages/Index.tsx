@@ -99,15 +99,16 @@ const Index = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="zoomIn" delay={0.2}>
-            <div className="mt-7 max-w-2xl mx-auto relative group cursor-pointer">
-              <div className="rounded-2xl overflow-hidden shadow-2xl border-2" style={{ borderColor: "hsl(38 85% 55% / 0.3)" }}>
-                <img src={heroEggs} alt="Ovos de colher gourmet premium" className="w-full h-auto" />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-14 h-14 md:w-18 md:h-18 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))" }}>
-                  <Play className="w-6 h-6 md:w-7 md:h-7 ml-0.5" style={{ color: "hsl(15 60% 14%)" }} />
-                </div>
-              </div>
+            <div className="mt-7 max-w-2xl mx-auto relative group cursor-pointer rounded-2xl overflow-hidden shadow-2xl border-2" style={{ borderColor: "hsl(38 85% 55% / 0.3)" }}>
+              <video
+                src="/videos/hero-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto"
+                poster={heroEggs}
+              />
             </div>
           </AnimatedSection>
 
