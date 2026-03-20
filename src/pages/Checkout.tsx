@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ShieldCheck, Lock, Flame, ArrowLeft } from "lucide-react";
+import { Check, ShieldCheck, Lock, ArrowLeft, Copy, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import logoOvoLucrativo from "@/assets/logo-ovo-lucrativo.png";
 import grupoExclusivo from "@/assets/grupo-exclusivo.jpg";
 
@@ -16,6 +18,28 @@ const inclusoCurso = [
   "Acesso vitalício + atualizações",
 ];
 
+const formatCPF = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `${digits.slice(0, 3)}.${digits.slice(3)}`;
+  if (digits.length <= 9) return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6)}`;
+  return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`;
+};
+
+const formatPhone = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+};
+
+type PaymentData = {
+  qr_code: string;
+  qr_code_base64: string;
+  expires_at: string;
+  transaction_id: number;
+};
+
 const Checkout = () => {
   const [orderBump, setOrderBump] = useState(false);
   const navigate = useNavigate();
@@ -24,7 +48,137 @@ const Checkout = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [payment, setPayment] = useState<PaymentData | null>(null);
 
+  const handleSubmit = async () => {
+    if (!nome.trim() || !email.trim() || !telefone.trim() || !cpf.trim()) {
+      toast.error("Preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    if (cpf.replace(/\D/g, "").length < 11) {
+      toast.error("CPF inválido. Verifique e tente novamente.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const amountInCents = Math.round(total * 100);
+      const reference = `OVO-${Date.now()}`;
+
+      const { data, error } = await supabase.functions.invoke("create-pix-payment", {
+        body: {
+          amount: amountInCents,
+          description: orderBump
+            ? "Mini Curso Ovo Lucrativo + Grupo Exclusivo"
+            : "Mini Curso Ovo Lucrativo",
+          reference,
+          customer: {
+            name: nome.trim(),
+            email: email.trim(),
+            phone: telefone.trim(),
+            document: cpf.trim(),
+          },
+        },
+      });
+
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+
+      setPayment(data);
+      toast.success("PIX gerado com sucesso!");
+    } catch (err: any) {
+      console.error("Payment error:", err);
+      toast.error(err.message || "Erro ao gerar pagamento. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const copyPixCode = () => {
+    if (payment?.qr_code) {
+      navigator.clipboard.writeText(payment.qr_code);
+      toast.success("Código PIX copiado!");
+    }
+  };
+
+  // ══════════ PIX PAYMENT SCREEN ══════════
+  if (payment) {
+    return (
+      <div className="min-h-screen font-body" style={{ background: "linear-gradient(165deg, hsl(15 60% 14%) 0%, hsl(20 50% 20%) 40%, hsl(25 45% 28%) 100%)" }}>
+        <div className="w-full py-2 text-center" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 42%))" }}>
+          <p className="font-heading font-bold text-[10px] md:text-xs tracking-widest" style={{ color: "hsl(15 60% 14%)" }}>
+            🔒 PAGAMENTO VIA PIX — AMBIENTE PROTEGIDO
+          </p>
+        </div>
+
+        <div className="max-w-lg mx-auto px-4 py-8 flex flex-col items-center">
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="w-full rounded-2xl overflow-hidden" style={{ background: "hsl(20 50% 20% / 0.6)", border: "1px solid hsl(38 85% 55% / 0.25)", backdropFilter: "blur(10px)" }}>
+            <div className="px-4 py-3 text-center" style={{ background: "linear-gradient(135deg, hsl(38 85% 55% / 0.12), transparent)", borderBottom: "1px solid hsl(38 85% 55% / 0.15)" }}>
+              <p className="font-heading font-bold text-[12px] tracking-widest text-gold uppercase">Escaneie o QR Code</p>
+              <p className="text-[10px] mt-0.5" style={{ color: "hsl(35 30% 65%)" }}>Abra o app do seu banco e escaneie o código abaixo</p>
+            </div>
+
+            <div className="p-6 flex flex-col items-center gap-4">
+              {payment.qr_code_base64 && (
+                <div className="bg-white rounded-2xl p-3">
+                  <img src={payment.qr_code_base64} alt="QR Code PIX" className="w-52 h-52" />
+                </div>
+              )}
+
+              <div className="w-full">
+                <p className="text-[10px] font-bold font-heading tracking-wide mb-1.5 text-center" style={{ color: "hsl(35 30% 70%)" }}>OU COPIE O CÓDIGO PIX</p>
+                <div className="flex gap-2">
+                  <input
+                    readOnly
+                    value={payment.qr_code}
+                    className="flex-1 rounded-xl px-3 py-2.5 text-[10px] font-mono truncate"
+                    style={{ background: "hsl(15 60% 14% / 0.5)", border: "1px solid hsl(38 85% 55% / 0.2)", color: "hsl(35 50% 96%)" }}
+                  />
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    onClick={copyPixCode}
+                    className="px-3 rounded-xl flex items-center gap-1 text-[10px] font-bold"
+                    style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 42%))", color: "hsl(15 60% 14%)" }}
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                    Copiar
+                  </motion.button>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <p className="font-heading font-black text-[28px] text-gold">
+                  R$ {total.toFixed(2).replace(".", ",")}
+                </p>
+                {payment.expires_at && (
+                  <p className="text-[9px] mt-1" style={{ color: "hsl(35 30% 55%)" }}>
+                    Expira em: {payment.expires_at}
+                  </p>
+                )}
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            onClick={() => setPayment(null)}
+            className="mt-4 flex items-center gap-1 text-[11px] font-medium"
+            style={{ color: "hsl(35 30% 65%)" }}
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Voltar ao checkout
+          </motion.button>
+        </div>
+      </div>
+    );
+  }
+
+  // ══════════ CHECKOUT FORM ══════════
   return (
     <div className="min-h-screen font-body" style={{ background: "linear-gradient(165deg, hsl(15 60% 14%) 0%, hsl(20 50% 20%) 40%, hsl(25 45% 28%) 100%)" }}>
       {/* Top bar */}
@@ -52,7 +206,6 @@ const Checkout = () => {
             </div>
 
             <div className="p-4">
-              {/* Produto principal */}
               <div className="flex items-start gap-3">
                 <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(25 80% 38%), hsl(20 50% 25%))", border: "1px solid hsl(38 85% 55% / 0.3)" }}>
                   <img src={logoOvoLucrativo} alt="" className="w-full h-full object-contain p-1.5" />
@@ -66,7 +219,6 @@ const Checkout = () => {
                 </span>
               </div>
 
-              {/* Checklist */}
               <div className="mt-3 pl-[60px]">
                 <div className="space-y-1">
                   {inclusoCurso.map((item) => (
@@ -97,9 +249,7 @@ const Checkout = () => {
                 : "2px dashed hsl(38 85% 55% / 0.25)",
             }}
           >
-            {/* Bump header */}
             <div className="px-4 py-2 flex items-center gap-2" style={{ background: orderBump ? "linear-gradient(135deg, hsl(38 85% 55% / 0.2), transparent)" : "hsl(38 85% 55% / 0.06)", borderBottom: "1px solid hsl(38 85% 55% / 0.15)" }}>
-              {/* Custom checkbox */}
               <div
                 className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all duration-300"
                 style={{
@@ -127,7 +277,6 @@ const Checkout = () => {
               </span>
             </div>
 
-            {/* Bump content */}
             <div className="p-4 flex gap-3">
               <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0" style={{ border: "1px solid hsl(38 85% 55% / 0.3)" }}>
                 <img src={grupoExclusivo} alt="Grupo Exclusivo de Vendedoras" className="w-full h-full object-cover" />
@@ -160,53 +309,48 @@ const Checkout = () => {
             </div>
 
             <div className="p-4 space-y-3">
+              {[
+                { label: "NOME COMPLETO", value: nome, setter: setNome, type: "text", placeholder: "Seu nome completo" },
+                { label: "E-MAIL", value: email, setter: setEmail, type: "email", placeholder: "seu@email.com" },
+              ].map((field) => (
+                <div key={field.label}>
+                  <label className="block text-[10px] font-bold font-heading tracking-wide mb-1" style={{ color: "hsl(35 30% 70%)" }}>{field.label}</label>
+                  <input
+                    type={field.type}
+                    value={field.value}
+                    onChange={(e) => field.setter(e.target.value)}
+                    placeholder={field.placeholder}
+                    className="w-full rounded-xl px-3.5 py-2.5 text-[12px] font-medium outline-none transition-all duration-300 placeholder:text-[11px]"
+                    style={{ background: "hsl(15 60% 14% / 0.5)", border: "1px solid hsl(38 85% 55% / 0.2)", color: "hsl(35 50% 96%)" }}
+                    onFocus={(e) => e.target.style.borderColor = "hsl(38 85% 55% / 0.5)"}
+                    onBlur={(e) => e.target.style.borderColor = "hsl(38 85% 55% / 0.2)"}
+                  />
+                </div>
+              ))}
+
               <div>
-                <label className="block text-[10px] font-bold font-heading tracking-wide mb-1" style={{ color: "hsl(35 30% 70%)" }}>NOME COMPLETO</label>
+                <label className="block text-[10px] font-bold font-heading tracking-wide mb-1" style={{ color: "hsl(35 30% 70%)" }}>CPF</label>
                 <input
                   type="text"
-                  value={nome}
-                  onChange={(e) => setNome(e.target.value)}
-                  placeholder="Seu nome completo"
+                  value={cpf}
+                  onChange={(e) => setCpf(formatCPF(e.target.value))}
+                  placeholder="000.000.000-00"
                   className="w-full rounded-xl px-3.5 py-2.5 text-[12px] font-medium outline-none transition-all duration-300 placeholder:text-[11px]"
-                  style={{
-                    background: "hsl(15 60% 14% / 0.5)",
-                    border: "1px solid hsl(38 85% 55% / 0.2)",
-                    color: "hsl(35 50% 96%)",
-                  }}
+                  style={{ background: "hsl(15 60% 14% / 0.5)", border: "1px solid hsl(38 85% 55% / 0.2)", color: "hsl(35 50% 96%)" }}
                   onFocus={(e) => e.target.style.borderColor = "hsl(38 85% 55% / 0.5)"}
                   onBlur={(e) => e.target.style.borderColor = "hsl(38 85% 55% / 0.2)"}
                 />
               </div>
-              <div>
-                <label className="block text-[10px] font-bold font-heading tracking-wide mb-1" style={{ color: "hsl(35 30% 70%)" }}>E-MAIL</label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="seu@email.com"
-                  className="w-full rounded-xl px-3.5 py-2.5 text-[12px] font-medium outline-none transition-all duration-300 placeholder:text-[11px]"
-                  style={{
-                    background: "hsl(15 60% 14% / 0.5)",
-                    border: "1px solid hsl(38 85% 55% / 0.2)",
-                    color: "hsl(35 50% 96%)",
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = "hsl(38 85% 55% / 0.5)"}
-                  onBlur={(e) => e.target.style.borderColor = "hsl(38 85% 55% / 0.2)"}
-                />
-              </div>
+
               <div>
                 <label className="block text-[10px] font-bold font-heading tracking-wide mb-1" style={{ color: "hsl(35 30% 70%)" }}>TELEFONE / WHATSAPP</label>
                 <input
                   type="tel"
                   value={telefone}
-                  onChange={(e) => setTelefone(e.target.value)}
+                  onChange={(e) => setTelefone(formatPhone(e.target.value))}
                   placeholder="(00) 00000-0000"
                   className="w-full rounded-xl px-3.5 py-2.5 text-[12px] font-medium outline-none transition-all duration-300 placeholder:text-[11px]"
-                  style={{
-                    background: "hsl(15 60% 14% / 0.5)",
-                    border: "1px solid hsl(38 85% 55% / 0.2)",
-                    color: "hsl(35 50% 96%)",
-                  }}
+                  style={{ background: "hsl(15 60% 14% / 0.5)", border: "1px solid hsl(38 85% 55% / 0.2)", color: "hsl(35 50% 96%)" }}
                   onFocus={(e) => e.target.style.borderColor = "hsl(38 85% 55% / 0.5)"}
                   onBlur={(e) => e.target.style.borderColor = "hsl(38 85% 55% / 0.2)"}
                 />
@@ -218,7 +362,6 @@ const Checkout = () => {
         {/* ═══════ TOTAL + BOTÃO ═══════ */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
           <div className="mt-4 rounded-2xl overflow-hidden" style={{ background: "hsl(20 50% 20% / 0.6)", border: "1px solid hsl(38 85% 55% / 0.25)" }}>
-            {/* Total */}
             <div className="px-4 py-3">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-medium" style={{ color: "hsl(35 30% 70%)" }}>Mini Curso Ovo Lucrativo</span>
@@ -226,12 +369,7 @@ const Checkout = () => {
               </div>
               <AnimatePresence>
                 {orderBump && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="flex items-center justify-between mt-1"
-                  >
+                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex items-center justify-between mt-1">
                     <span className="text-[11px] font-medium" style={{ color: "hsl(38 85% 60%)" }}>Grupo Exclusivo de Vendedoras</span>
                     <span className="text-[11px] font-medium" style={{ color: "hsl(38 85% 60%)" }}>R$ {PRECO_GRUPO.toFixed(2).replace(".", ",")}</span>
                   </motion.div>
@@ -242,12 +380,7 @@ const Checkout = () => {
                 <span className="font-heading font-bold text-[12px] text-cream">Total</span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-[10px] font-medium" style={{ color: "hsl(35 30% 65%)" }}>R$</span>
-                  <motion.span
-                    key={total}
-                    initial={{ scale: 1.2, color: "hsl(38 85% 60%)" }}
-                    animate={{ scale: 1, color: "hsl(38 85% 55%)" }}
-                    className="font-heading font-black text-[28px] leading-none"
-                  >
+                  <motion.span key={total} initial={{ scale: 1.2, color: "hsl(38 85% 60%)" }} animate={{ scale: 1, color: "hsl(38 85% 55%)" }} className="font-heading font-black text-[28px] leading-none">
                     {total.toFixed(2).replace(".", ",")}
                   </motion.span>
                 </div>
@@ -257,12 +390,13 @@ const Checkout = () => {
               </p>
             </div>
 
-            {/* CTA Comprar */}
             <div className="px-4 pb-4 pt-1">
               <motion.button
                 whileHover={{ scale: 1.02, boxShadow: "0 12px 40px hsl(38 85% 55% / 0.45)" }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full py-3.5 rounded-xl font-heading font-extrabold text-[13px] tracking-wider uppercase cursor-pointer transition-all duration-300"
+                onClick={handleSubmit}
+                disabled={loading}
+                className="w-full py-3.5 rounded-xl font-heading font-extrabold text-[13px] tracking-wider uppercase cursor-pointer transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 style={{
                   background: "linear-gradient(180deg, hsl(40 70% 75%), hsl(38 85% 55%) 45%, hsl(38 90% 43%))",
                   color: "hsl(15 60% 14%)",
@@ -270,11 +404,17 @@ const Checkout = () => {
                   boxShadow: "0 10px 28px hsl(38 85% 55% / 0.3), inset 0 1px 0 hsl(35 50% 96% / 0.35), inset 0 -2px 0 hsl(25 80% 38% / 0.2)",
                 }}
               >
-                FINALIZAR COMPRA
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    GERANDO PIX...
+                  </>
+                ) : (
+                  "PAGAR COM PIX"
+                )}
               </motion.button>
             </div>
 
-            {/* Trust badges */}
             <div className="px-4 pb-3 flex items-center justify-center gap-3 text-[8px]" style={{ color: "hsl(35 30% 60%)" }}>
               <span className="flex items-center gap-1">
                 <Lock className="w-2.5 h-2.5 text-gold" />
