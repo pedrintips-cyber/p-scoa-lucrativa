@@ -25,8 +25,8 @@ const AnimatedSection = ({ children, animation = "fadeInUp", className = "", del
   <motion.div
     initial="hidden"
     whileInView="visible"
-    viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.6, delay }}
+    viewport={{ once: true, amount: 0.15 }}
+    transition={{ duration: 0.35, delay: delay * 0.5, ease: [0.16, 1, 0.3, 1] }}
     variants={variants[animation]}
     className={className}
   >
