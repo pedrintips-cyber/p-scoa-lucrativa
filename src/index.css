@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Playfair+Display:wght@400;700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,30 +6,37 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 20% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
-    --primary: 330 82% 53%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 193 96% 44%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 10% 46%;
-    --accent: 193 96% 44%;
-    --accent-foreground: 0 0% 100%;
+    --background: 30 25% 97%;
+    --foreground: 20 30% 12%;
+    --card: 30 30% 99%;
+    --card-foreground: 20 30% 12%;
+    --popover: 30 30% 99%;
+    --popover-foreground: 20 30% 12%;
+    --primary: 25 80% 38%;
+    --primary-foreground: 40 60% 95%;
+    --secondary: 38 85% 55%;
+    --secondary-foreground: 20 30% 12%;
+    --muted: 30 15% 93%;
+    --muted-foreground: 20 10% 42%;
+    --accent: 38 85% 55%;
+    --accent-foreground: 20 30% 12%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 330 82% 53%;
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 25 80% 38%;
     --radius: 0.75rem;
 
-    --primary-hover: 330 82% 42%;
-    --section-alt: 220 14% 97%;
-    --highlight-bg: 193 96% 44%;
+    --primary-hover: 25 85% 30%;
+    --section-alt: 30 30% 95%;
+    --highlight-bg: 38 85% 55%;
+    --chocolate-dark: 15 60% 14%;
+    --chocolate-mid: 20 50% 25%;
+    --chocolate-warm: 25 45% 35%;
+    --gold: 38 85% 55%;
+    --gold-light: 40 70% 75%;
+    --cream: 35 40% 92%;
+    --cream-light: 35 50% 96%;
   }
 }
 
@@ -50,22 +57,66 @@
   .section-alt {
     background-color: hsl(var(--section-alt));
   }
+  .section-chocolate {
+    background: linear-gradient(135deg, hsl(var(--chocolate-dark)), hsl(var(--chocolate-mid)));
+    color: hsl(var(--cream-light));
+  }
+  .section-chocolate-warm {
+    background: linear-gradient(180deg, hsl(var(--chocolate-mid)), hsl(var(--chocolate-warm)));
+    color: hsl(var(--cream-light));
+  }
   .highlight-text {
-    background-color: hsl(var(--highlight-bg));
-    color: hsl(var(--secondary-foreground));
-    @apply px-3 py-1 rounded-full inline-block text-sm font-semibold;
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+    color: hsl(var(--chocolate-dark));
+    @apply px-4 py-1.5 rounded-full inline-block text-sm font-bold tracking-wide;
   }
   .btn-cta {
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    @apply px-8 py-4 rounded-xl text-lg font-bold shadow-lg transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(38 90% 48%));
+    color: hsl(var(--chocolate-dark));
+    @apply px-10 py-5 rounded-2xl text-lg font-extrabold shadow-xl transition-all duration-300 tracking-wide uppercase;
     font-family: 'Montserrat', sans-serif;
+    text-shadow: none;
+    letter-spacing: 0.05em;
+    border: 2px solid hsl(var(--gold-light));
   }
   .btn-cta:hover {
-    background-color: hsl(var(--primary-hover));
-    @apply scale-105 shadow-xl;
+    background: linear-gradient(135deg, hsl(38 90% 48%), hsl(var(--gold)));
+    @apply scale-105 shadow-2xl;
+    border-color: hsl(var(--gold));
+  }
+  .btn-cta-dark {
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(38 90% 48%));
+    color: hsl(var(--chocolate-dark));
+    @apply px-10 py-5 rounded-2xl text-lg font-extrabold shadow-xl transition-all duration-300 tracking-wide uppercase;
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid hsl(var(--gold-light));
+  }
+  .btn-cta-dark:hover {
+    background: linear-gradient(135deg, hsl(38 95% 60%), hsl(var(--gold)));
+    @apply scale-105 shadow-2xl;
   }
   .card-shadow {
-    @apply shadow-md hover:shadow-lg transition-shadow duration-300;
+    @apply shadow-md hover:shadow-xl transition-shadow duration-300;
+    border: 1px solid hsl(var(--gold-light) / 0.3);
+  }
+  .card-chocolate {
+    background: linear-gradient(145deg, hsl(var(--chocolate-mid)), hsl(var(--chocolate-dark)));
+    color: hsl(var(--cream-light));
+    border: 1px solid hsl(var(--gold) / 0.3);
+    @apply shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+  .text-cream {
+    color: hsl(var(--cream-light));
+  }
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+  .gold-divider {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+    @apply my-6 mx-auto max-w-xs;
   }
 }
