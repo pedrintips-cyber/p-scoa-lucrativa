@@ -414,7 +414,7 @@ const Index = () => {
               A Páscoa está chegando. Comece hoje e fature alto.
             </p>
             <div className="mt-4">
-              <CTAButton text="QUERO COMEÇAR AGORA" className="text-[11px]" />
+              <CTAButton text="QUERO COMEÇAR AGORA" className="text-[11px]" href="/checkout" />
             </div>
             <p className="text-[8px] mt-1.5 flex items-center justify-center gap-1 text-muted-foreground">
               <ShieldCheck className="w-2.5 h-2.5 text-primary" />
