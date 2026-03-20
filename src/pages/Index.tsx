@@ -324,15 +324,15 @@ const Index = () => {
 
               {/* Preço */}
               <div className="px-5 py-2 text-center">
-                <p className="text-muted-foreground line-through text-[10px]">De R$ 197,00</p>
+                <p className="text-muted-foreground line-through text-[10px]">De R$ 97,00</p>
                 <div className="flex items-baseline justify-center gap-0.5">
                   <span className="text-muted-foreground text-[11px] font-medium">R$</span>
-                  <span className="font-heading font-black text-[44px] leading-none text-primary">47</span>
-                  <span className="font-heading font-bold text-sm text-primary">,00</span>
+                  <span className="font-heading font-black text-[44px] leading-none text-primary">24</span>
+                  <span className="font-heading font-bold text-sm text-primary">,90</span>
                 </div>
                 <div className="inline-flex items-center gap-1 mt-0.5 rounded-full px-2.5 py-0.5 text-[9px] font-bold" style={{ background: "hsl(var(--gold) / 0.1)", color: "hsl(var(--primary))" }}>
                   <Zap className="w-2.5 h-2.5" />
-                  ou 5x de R$ 10,14
+                  ou 3x de R$ 8,96
                 </div>
               </div>
 
