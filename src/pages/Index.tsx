@@ -33,12 +33,12 @@ const paraQuem = [
   "Quer aumentar sua renda com um produto premium",
 ];
 
-const conteudos = [
-  { icon: BookOpen, title: "Receitas Exclusivas", desc: "Passo a passo detalhado de cada sabor com medidas exatas e acabamento profissional" },
-  { icon: ChefHat, title: "Técnicas de Preparo", desc: "Segredos para deixar seu recheio cremoso, estruturado e com aparência de vitrine" },
-  { icon: Award, title: "Montagem Premium", desc: "Aprenda a montar ovos que impressionam, valorizam seu produto e vendem mais fácil" },
-  { icon: DollarSign, title: "Precificação Inteligente", desc: "Saiba quanto cobrar para não sair no prejuízo e maximizar seu lucro" },
-  { icon: Rocket, title: "Estratégias de Venda", desc: "Métodos simples para vender rápido, criar desejo e aproveitar a sazonalidade" },
+const modulos = [
+  { num: "01", title: "Receitas Exclusivas", desc: "Passo a passo detalhado de cada sabor com medidas exatas e acabamento profissional que vende", img: moduloReceitas, icon: BookOpen },
+  { num: "02", title: "Técnicas de Preparo", desc: "Segredos para deixar seu recheio cremoso, estruturado e com aparência de vitrine", img: moduloTecnicas, icon: ChefHat },
+  { num: "03", title: "Montagem Premium", desc: "Aprenda a montar ovos que impressionam, valorizam seu produto e vendem mais fácil", img: moduloMontagem, icon: Award },
+  { num: "04", title: "Precificação Inteligente", desc: "Saiba quanto cobrar para não sair no prejuízo e maximizar seu lucro em cada ovo", img: moduloPrecificacao, icon: DollarSign },
+  { num: "05", title: "Estratégias de Venda", desc: "Métodos simples para vender rápido, criar desejo e aproveitar a sazonalidade da Páscoa", img: moduloVendas, icon: Rocket },
 ];
 
 const bonus = [
