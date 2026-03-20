@@ -110,7 +110,7 @@ const Index = () => {
 
           <AnimatedSection animation="bounceIn" delay={0.3}>
             <div className="mt-4 flex flex-col items-center gap-1.5">
-              <CTAButton text="QUERO GANHAR DINHEIRO NA PÁSCOA" variant="dark" className="text-[11px] md:text-base" />
+              <CTAButton text="QUERO GANHAR DINHEIRO NA PÁSCOA" variant="dark" className="text-[11px] md:text-base" href="/checkout" />
               <p className="text-[9px] md:text-[11px] font-medium flex items-center gap-1" style={{ color: "hsl(38 85% 65%)" }}>
                 <ShieldCheck className="w-2.5 h-2.5" />
                 Acesso imediato · 7 dias de garantia
