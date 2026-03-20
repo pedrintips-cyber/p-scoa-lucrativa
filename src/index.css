@@ -55,7 +55,7 @@
 
 @layer utilities {
   .section-alt {
-    background-color: hsl(var(--section-alt));
+    background: linear-gradient(180deg, hsl(var(--section-alt)), hsl(var(--cream-light)));
   }
   .section-chocolate {
     background: linear-gradient(135deg, hsl(var(--chocolate-dark)), hsl(var(--chocolate-mid)));
@@ -71,40 +71,62 @@
     @apply px-4 py-1.5 rounded-full inline-block text-sm font-bold tracking-wide;
   }
   .btn-cta {
-    background: linear-gradient(135deg, hsl(var(--gold)), hsl(38 90% 45%));
+    background: linear-gradient(180deg, hsl(var(--gold-light)), hsl(var(--gold)) 45%, hsl(38 90% 43%));
     color: hsl(var(--chocolate-dark));
     @apply px-8 py-4 rounded-xl text-base font-extrabold shadow-xl transition-all duration-300 tracking-wider uppercase;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.08em;
-    border: none;
-    box-shadow: 0 4px 20px hsl(38 85% 55% / 0.35), inset 0 1px 0 hsl(38 85% 75% / 0.4);
+    border: 1px solid hsl(var(--gold-light) / 0.5);
+    box-shadow: 0 12px 28px hsl(38 85% 55% / 0.28), inset 0 1px 0 hsl(var(--cream-light) / 0.35), inset 0 -2px 0 hsl(25 80% 38% / 0.2);
   }
   .btn-cta:hover {
-    background: linear-gradient(135deg, hsl(38 92% 50%), hsl(var(--gold)));
-    box-shadow: 0 8px 30px hsl(38 85% 55% / 0.5), inset 0 1px 0 hsl(38 85% 75% / 0.4);
+    background: linear-gradient(180deg, hsl(var(--gold-light)), hsl(38 92% 58%) 45%, hsl(var(--gold)));
+    box-shadow: 0 16px 36px hsl(38 85% 55% / 0.38), inset 0 1px 0 hsl(var(--cream-light) / 0.4), inset 0 -2px 0 hsl(25 80% 38% / 0.2);
   }
   .btn-cta-dark {
-    background: linear-gradient(135deg, hsl(var(--gold)), hsl(38 90% 45%));
+    background: linear-gradient(180deg, hsl(var(--gold-light)), hsl(var(--gold)) 45%, hsl(38 90% 43%));
     color: hsl(var(--chocolate-dark));
     @apply px-8 py-4 rounded-xl text-base font-extrabold shadow-xl transition-all duration-300 tracking-wider uppercase;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.08em;
-    border: none;
-    box-shadow: 0 4px 20px hsl(38 85% 55% / 0.35), inset 0 1px 0 hsl(38 85% 75% / 0.4);
+    border: 1px solid hsl(var(--gold-light) / 0.5);
+    box-shadow: 0 12px 28px hsl(38 85% 55% / 0.28), inset 0 1px 0 hsl(var(--cream-light) / 0.35), inset 0 -2px 0 hsl(25 80% 38% / 0.2);
   }
   .btn-cta-dark:hover {
-    background: linear-gradient(135deg, hsl(38 92% 50%), hsl(var(--gold)));
-    box-shadow: 0 8px 30px hsl(38 85% 55% / 0.5), inset 0 1px 0 hsl(38 85% 75% / 0.4);
+    background: linear-gradient(180deg, hsl(var(--gold-light)), hsl(38 92% 58%) 45%, hsl(var(--gold)));
+    box-shadow: 0 16px 36px hsl(38 85% 55% / 0.38), inset 0 1px 0 hsl(var(--cream-light) / 0.4), inset 0 -2px 0 hsl(25 80% 38% / 0.2);
   }
   .card-shadow {
-    @apply shadow-md hover:shadow-xl transition-shadow duration-300;
-    border: 1px solid hsl(var(--gold-light) / 0.3);
+    @apply transition-all duration-300;
+    border: 1px solid hsl(var(--gold-light) / 0.28);
+    box-shadow: 0 14px 30px hsl(var(--chocolate-dark) / 0.06);
+  }
+  .card-shadow:hover {
+    box-shadow: 0 20px 44px hsl(var(--chocolate-dark) / 0.1);
   }
   .card-chocolate {
     background: linear-gradient(145deg, hsl(var(--chocolate-mid)), hsl(var(--chocolate-dark)));
     color: hsl(var(--cream-light));
     border: 1px solid hsl(var(--gold) / 0.3);
-    @apply shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply shadow-lg transition-all duration-300;
+    box-shadow: 0 18px 40px hsl(var(--chocolate-dark) / 0.28);
+  }
+  .premium-panel {
+    background: linear-gradient(180deg, hsl(var(--card)), hsl(var(--cream-light)));
+    border: 1px solid hsl(var(--gold-light) / 0.28);
+    box-shadow: 0 18px 40px hsl(var(--chocolate-dark) / 0.08);
+    @apply rounded-[1.75rem];
+  }
+  .premium-dark-panel {
+    background: linear-gradient(180deg, hsl(var(--chocolate-mid)), hsl(var(--chocolate-dark)));
+    border: 1px solid hsl(var(--gold) / 0.25);
+    box-shadow: 0 18px 40px hsl(var(--chocolate-dark) / 0.28);
+    @apply rounded-[1.75rem];
+  }
+  .icon-chip {
+    background: linear-gradient(135deg, hsl(var(--gold) / 0.16), hsl(var(--gold) / 0.06));
+    color: hsl(var(--primary));
+    @apply w-12 h-12 rounded-2xl flex items-center justify-center;
   }
   .text-gold {
     color: hsl(var(--gold));
