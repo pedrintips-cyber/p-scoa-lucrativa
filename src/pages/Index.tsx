@@ -309,6 +309,9 @@ const Index = () => {
               </div>
 
               <div className="p-7 md:p-10 text-center">
+                <div className="flex justify-center mb-4">
+                  <img src={logoOvoLucrativo} alt="Ovo Lucrativo" className="w-36 md:w-44 h-auto drop-shadow-md" />
+                </div>
                 <h2 className="font-heading font-bold text-xl md:text-2xl text-foreground">Mini Curso Completo</h2>
                 <p className="font-heading font-extrabold text-2xl md:text-3xl text-primary mt-1">Ovo de Colher Lucrativo</p>
                 <div className="gold-divider" />
