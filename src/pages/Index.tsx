@@ -64,28 +64,24 @@ const Index = () => {
       <section className="relative overflow-hidden" style={{ background: "linear-gradient(165deg, hsl(15 60% 14%) 0%, hsl(20 50% 20%) 40%, hsl(25 45% 28%) 100%)" }}>
         <div className="absolute top-0 right-0 w-72 h-72 rounded-full opacity-[0.07]" style={{ background: "radial-gradient(circle, hsl(38 85% 55%), transparent 70%)", transform: "translate(30%, -30%)" }} />
 
-        <div className="max-w-5xl mx-auto px-4 pt-8 pb-12 md:pt-14 md:pb-18 relative z-10">
+        <div className="max-w-5xl mx-auto px-4 pt-4 pb-8 md:pt-10 md:pb-14 relative z-10">
+          {/* Logo pequena + badge juntos */}
           <AnimatedSection animation="fadeInUp">
-            <div className="flex justify-center mb-4">
-              <img src={logoOvoLucrativo} alt="Ovo Lucrativo" className="w-40 md:w-56 h-auto drop-shadow-lg" />
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fadeInUp">
-            <div className="flex justify-center mb-5">
-              <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold font-heading tracking-wide" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))", color: "hsl(15 60% 14%)" }}>
-                <Flame className="w-3.5 h-3.5" />
+            <div className="flex flex-col items-center gap-2 mb-3">
+              <img src={logoOvoLucrativo} alt="Ovo Lucrativo" className="w-20 md:w-40 h-auto drop-shadow-lg" />
+              <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[9px] md:text-xs font-bold font-heading tracking-wide" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))", color: "hsl(15 60% 14%)" }}>
+                <Flame className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />
                 PÁSCOA 2026 — VAGAS LIMITADAS
-                <Flame className="w-3.5 h-3.5" />
+                <Flame className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />
               </div>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.1}>
-            <h1 className="font-heading font-extrabold text-center text-[26px] md:text-[44px] leading-[1.12] tracking-tight" style={{ color: "hsl(35 50% 96%)" }}>
+            <h1 className="font-heading font-extrabold text-center text-[20px] md:text-[42px] leading-[1.18] tracking-tight" style={{ color: "hsl(35 50% 96%)" }}>
               Aprenda a Fazer Ovos de Colher{" "}
               <span className="text-gold">Irresistíveis</span> e Fature de{" "}
-              <span className="inline-block mt-1 px-3 py-0.5 rounded-lg" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))", color: "hsl(15 60% 14%)" }}>
+              <span className="inline-block px-2 py-0.5 rounded-lg text-[18px] md:text-[38px]" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))", color: "hsl(15 60% 14%)" }}>
                 R$3.000 a R$10.000
               </span>{" "}
               Nessa Páscoa
@@ -93,19 +89,19 @@ const Index = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.15}>
-            <p className="text-center text-sm md:text-lg mt-4 max-w-xl mx-auto font-light" style={{ color: "hsl(35 30% 80%)" }}>
+            <p className="text-center text-[11px] md:text-lg mt-2 max-w-xl mx-auto font-light" style={{ color: "hsl(35 30% 80%)" }}>
               Mesmo que você <strong className="font-semibold text-cream">nunca tenha feito um ovo</strong> na vida
             </p>
           </AnimatedSection>
 
           <AnimatedSection animation="zoomIn" delay={0.2}>
-            <div className="mt-7 max-w-2xl mx-auto relative group cursor-pointer rounded-2xl overflow-hidden shadow-2xl border-2" style={{ borderColor: "hsl(38 85% 55% / 0.3)" }}>
+            <div className="mt-4 max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-2xl border-2" style={{ borderColor: "hsl(38 85% 55% / 0.3)" }}>
               <video
                 src="/videos/hero-video.mp4"
                 autoPlay
                 loop
-                muted
                 playsInline
+                controls
                 className="w-full h-auto"
                 poster={heroEggs}
               />
@@ -113,25 +109,25 @@ const Index = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="bounceIn" delay={0.3}>
-            <div className="mt-7 flex flex-col items-center gap-2">
-              <CTAButton text="QUERO GANHAR DINHEIRO NA PÁSCOA" variant="dark" className="text-sm md:text-base" />
-              <p className="text-[11px] font-medium flex items-center gap-1.5" style={{ color: "hsl(38 85% 65%)" }}>
-                <ShieldCheck className="w-3 h-3" />
+            <div className="mt-4 flex flex-col items-center gap-1.5">
+              <CTAButton text="QUERO GANHAR DINHEIRO NA PÁSCOA" variant="dark" className="text-[11px] md:text-base" />
+              <p className="text-[9px] md:text-[11px] font-medium flex items-center gap-1" style={{ color: "hsl(38 85% 65%)" }}>
+                <ShieldCheck className="w-2.5 h-2.5" />
                 Acesso imediato · 7 dias de garantia
               </p>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="fadeInUp" delay={0.35}>
-            <div className="mt-6 flex items-center justify-center gap-6">
+            <div className="mt-3 flex items-center justify-center gap-5">
               {[
                 { num: "+2.500", label: "alunas" },
                 { num: "4.9★", label: "avaliação" },
                 { num: "+R$50K", label: "faturados" },
               ].map((s) => (
                 <div key={s.label} className="text-center">
-                  <span className="font-heading font-extrabold text-base md:text-lg text-gold block">{s.num}</span>
-                  <span className="text-[10px] uppercase tracking-wider block" style={{ color: "hsl(35 30% 65%)" }}>{s.label}</span>
+                  <span className="font-heading font-extrabold text-xs md:text-lg text-gold block">{s.num}</span>
+                  <span className="text-[8px] md:text-[10px] uppercase tracking-wider block" style={{ color: "hsl(35 30% 65%)" }}>{s.label}</span>
                 </div>
               ))}
             </div>
@@ -140,18 +136,18 @@ const Index = () => {
       </section>
 
       {/* ═══════ GALERIA ═══════ */}
-      <section className="py-12 px-4 bg-background">
+      <section className="py-10 px-4 bg-background">
         <div className="max-w-5xl mx-auto">
           <AnimatedSection>
             <div className="text-center">
               <span className="highlight-text mb-3">🍫 Galeria de Sabores</span>
-              <h2 className="font-heading font-bold text-xl md:text-[34px] leading-tight text-foreground mt-3">
+              <h2 className="font-heading font-bold text-lg md:text-[34px] leading-tight text-foreground mt-3">
                 Veja o que você vai aprender a <span className="text-primary">fazer e vender</span>
               </h2>
               <div className="gold-divider" />
             </div>
           </AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 mt-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 mt-6">
             {eggs.map((egg, i) => (
               <AnimatedSection key={egg.name} animation="zoomIn" delay={i * 0.06}>
                 <div className="rounded-2xl overflow-hidden group card-shadow bg-card relative">
@@ -168,13 +164,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ═══════ PRA QUEM É — Cards compactos estilo checklist ═══════ */}
-      <section className="py-12 px-4 section-alt">
+      {/* ═══════ PRA QUEM É ═══════ */}
+      <section className="py-10 px-4 section-alt">
         <div className="max-w-lg mx-auto">
           <AnimatedSection>
-            <div className="text-center mb-6">
+            <div className="text-center mb-5">
               <span className="highlight-text">✨ Pra quem é</span>
-              <h2 className="font-heading font-bold text-xl md:text-[32px] leading-tight text-foreground mt-3">
+              <h2 className="font-heading font-bold text-lg md:text-[32px] leading-tight text-foreground mt-3">
                 Esse curso é <span className="text-primary">pra você</span> que:
               </h2>
               <div className="gold-divider" />
@@ -184,11 +180,11 @@ const Index = () => {
           <AnimatedSection animation="fadeInUp">
             <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "hsl(var(--gold) / 0.2)", background: "hsl(var(--card))" }}>
               {paraQuem.map((item, i) => (
-                <div key={item.text} className={`flex items-center gap-3 px-4 py-3.5 ${i !== paraQuem.length - 1 ? 'border-b' : ''}`} style={{ borderColor: "hsl(var(--gold) / 0.1)" }}>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(var(--gold)), hsl(38 90% 48%))" }}>
-                    <item.icon className="w-4 h-4" style={{ color: "hsl(15 60% 14%)" }} />
+                <div key={item.text} className={`flex items-center gap-3 px-4 py-3 ${i !== paraQuem.length - 1 ? 'border-b' : ''}`} style={{ borderColor: "hsl(var(--gold) / 0.1)" }}>
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(var(--gold)), hsl(38 90% 48%))" }}>
+                    <item.icon className="w-3.5 h-3.5" style={{ color: "hsl(15 60% 14%)" }} />
                   </div>
-                  <span className="text-foreground text-sm font-medium leading-snug">{item.text}</span>
+                  <span className="text-foreground text-[13px] font-medium leading-snug">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -196,16 +192,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ═══════ MÓDULOS — Cards verticais compactos ═══════ */}
-      <section className="py-12 px-4 bg-background">
+      {/* ═══════ MÓDULOS ═══════ */}
+      <section className="py-10 px-4 bg-background">
         <div className="max-w-lg mx-auto">
           <AnimatedSection>
-            <div className="text-center mb-8">
+            <div className="text-center mb-6">
               <span className="highlight-text">📚 Conteúdo Completo</span>
-              <h2 className="font-heading font-bold text-xl md:text-[32px] leading-tight text-foreground mt-3">
+              <h2 className="font-heading font-bold text-lg md:text-[32px] leading-tight text-foreground mt-3">
                 O que você vai <span className="text-primary">dominar</span>
               </h2>
-              <p className="text-muted-foreground text-xs mt-1.5">5 módulos diretos, práticos e lucrativos</p>
+              <p className="text-muted-foreground text-[11px] mt-1">5 módulos diretos, práticos e lucrativos</p>
               <div className="gold-divider" />
             </div>
           </AnimatedSection>
@@ -221,13 +217,13 @@ const Index = () => {
                       {m.num}
                     </div>
                   </div>
-                  <div className="flex-1 p-3.5 md:p-4 flex flex-col justify-center">
-                    <div className="flex items-center gap-2 mb-1">
-                      <m.icon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                      <span className="text-[10px] font-bold font-heading tracking-widest text-primary uppercase">Módulo {m.num}</span>
+                  <div className="flex-1 p-3 md:p-4 flex flex-col justify-center">
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      <m.icon className="w-3 h-3 text-primary flex-shrink-0" />
+                      <span className="text-[9px] font-bold font-heading tracking-widest text-primary uppercase">Módulo {m.num}</span>
                     </div>
-                    <h3 className="font-heading font-bold text-foreground text-sm leading-snug">{m.title}</h3>
-                    <p className="text-muted-foreground mt-0.5 text-xs leading-relaxed">{m.desc}</p>
+                    <h3 className="font-heading font-bold text-foreground text-[13px] leading-snug">{m.title}</h3>
+                    <p className="text-muted-foreground mt-0.5 text-[11px] leading-relaxed">{m.desc}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -236,37 +232,35 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ═══════ BÔNUS — Compactos em lista ═══════ */}
-      <section className="py-12 px-4 section-chocolate">
+      {/* ═══════ BÔNUS ═══════ */}
+      <section className="py-10 px-4 section-chocolate">
         <div className="max-w-lg mx-auto relative z-10">
           <AnimatedSection>
-            <div className="text-center mb-6">
-              <span className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-bold font-heading" style={{ background: "hsl(38 85% 55% / 0.15)", color: "hsl(38 85% 65%)", border: "1px solid hsl(38 85% 55% / 0.3)" }}>
-                <Gift className="w-3.5 h-3.5" />
+            <div className="text-center mb-5">
+              <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold font-heading" style={{ background: "hsl(38 85% 55% / 0.15)", color: "hsl(38 85% 65%)", border: "1px solid hsl(38 85% 55% / 0.3)" }}>
+                <Gift className="w-3 h-3" />
                 BÔNUS EXCLUSIVOS
               </span>
-              <h2 className="font-heading font-bold text-xl md:text-[32px] leading-tight text-cream mt-3">
+              <h2 className="font-heading font-bold text-lg md:text-[32px] leading-tight text-cream mt-3">
                 Quem garantir hoje leva <span className="text-gold">3 bônus</span>
               </h2>
               <div className="gold-divider" />
             </div>
           </AnimatedSection>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {bonus.map((b, i) => (
               <AnimatedSection key={b.title} animation="fadeInUp" delay={i * 0.08}>
-                <div className="rounded-2xl p-4 flex items-start gap-3.5" style={{ background: "hsl(20 50% 20% / 0.6)", border: "1px solid hsl(38 85% 55% / 0.2)" }}>
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))" }}>
-                    <b.icon className="w-5 h-5" style={{ color: "hsl(15 60% 14%)" }} />
+                <div className="rounded-xl p-3.5 flex items-start gap-3" style={{ background: "hsl(20 50% 20% / 0.6)", border: "1px solid hsl(38 85% 55% / 0.2)" }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 48%))" }}>
+                    <b.icon className="w-4 h-4" style={{ color: "hsl(15 60% 14%)" }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className="text-[9px] font-bold font-heading tracking-widest rounded px-2 py-0.5" style={{ background: "hsl(38 85% 55%)", color: "hsl(15 60% 14%)" }}>
-                        {b.tag}
-                      </span>
-                    </div>
-                    <h3 className="font-heading font-bold text-cream text-sm leading-snug">{b.title}</h3>
-                    <p className="mt-0.5 text-xs leading-relaxed" style={{ color: "hsl(35 30% 70%)" }}>{b.desc}</p>
+                    <span className="text-[8px] font-bold font-heading tracking-widest rounded px-1.5 py-0.5" style={{ background: "hsl(38 85% 55%)", color: "hsl(15 60% 14%)" }}>
+                      {b.tag}
+                    </span>
+                    <h3 className="font-heading font-bold text-cream text-[13px] leading-snug mt-0.5">{b.title}</h3>
+                    <p className="text-[11px] leading-relaxed" style={{ color: "hsl(35 30% 70%)" }}>{b.desc}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -275,26 +269,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ═══════ HISTÓRIA PESSOAL — Compacta ═══════ */}
-      <section className="py-12 px-4 bg-background">
+      {/* ═══════ HISTÓRIA ═══════ */}
+      <section className="py-10 px-4 bg-background">
         <div className="max-w-lg mx-auto">
           <AnimatedSection>
             <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "hsl(var(--gold) / 0.2)", background: "hsl(var(--card))" }}>
               <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, hsl(var(--gold)), hsl(38 90% 48%), hsl(var(--gold)))" }} />
-              <div className="p-5 md:p-7">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(var(--gold) / 0.15), hsl(var(--gold) / 0.05))" }}>
-                    <Heart className="w-5 h-5 text-primary" />
+              <div className="p-4 md:p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(var(--gold) / 0.15), hsl(var(--gold) / 0.05))" }}>
+                    <Heart className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-foreground text-sm">Eu sei como é difícil...</h3>
-                    <p className="text-[11px] text-muted-foreground">A história por trás do método</p>
+                    <h3 className="font-heading font-bold text-foreground text-[13px]">Eu sei como é difícil...</h3>
+                    <p className="text-[10px] text-muted-foreground">A história por trás do método</p>
                   </div>
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-[12px] leading-relaxed">
                   Eu sei como é <strong className="text-primary">precisar de dinheiro</strong> e não saber por onde começar. Foi com os ovos de colher que mudei minha realidade — comecei na minha cozinha, sem experiência, e em poucas semanas já faturava mais que no meu emprego.
                 </p>
-                <p className="text-foreground mt-2 text-sm font-medium">
+                <p className="text-foreground mt-1.5 text-[12px] font-medium">
                   Hoje quero te ensinar <strong className="text-primary">exatamente</strong> o que fiz — passo a passo.
                 </p>
               </div>
@@ -303,127 +297,136 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ═══════ OFERTA — Painel premium compacto ═══════ */}
-      <section id="oferta" className="py-14 px-4 section-chocolate">
+      {/* ═══════ OFERTA ═══════ */}
+      <section id="oferta" className="py-12 px-4 section-chocolate">
         <div className="max-w-sm mx-auto relative z-10">
           <AnimatedSection animation="fadeInUp">
-            <div className="text-center mb-6">
-              <p className="text-xs font-bold font-heading tracking-widest text-gold uppercase">Oferta especial</p>
-              <h2 className="font-heading font-bold text-xl md:text-2xl text-cream mt-1">
+            <div className="text-center mb-4">
+              <p className="text-[9px] font-bold font-heading tracking-widest text-gold uppercase">⚡ Oferta por tempo limitado</p>
+              <h2 className="font-heading font-bold text-base md:text-2xl text-cream mt-0.5">
                 Garanta seu acesso agora
               </h2>
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="bounceIn">
-            <div className="offer-card rounded-[1.25rem] overflow-hidden" style={{ background: "hsl(30 30% 99%)", border: "2px solid hsl(38 85% 55% / 0.5)", boxShadow: "0 24px 48px hsl(15 60% 14% / 0.4), 0 0 0 1px hsl(38 85% 55% / 0.1)" }}>
-              {/* Header dourado */}
-              <div className="py-2.5 text-center font-heading font-bold text-xs tracking-widest" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 42%))", color: "hsl(15 60% 14%)" }}>
+            <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(180deg, hsl(30 30% 99%), hsl(35 40% 95%))", border: "2px solid hsl(38 85% 55% / 0.5)", boxShadow: "0 20px 50px hsl(15 60% 14% / 0.45)" }}>
+              {/* Header */}
+              <div className="py-2 text-center font-heading font-bold text-[10px] tracking-widest" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 42%))", color: "hsl(15 60% 14%)" }}>
                 🔥 OFERTA ESPECIAL DE PÁSCOA 🔥
               </div>
 
-              {/* Logo + título */}
-              <div className="pt-5 pb-2 text-center px-5">
-                <img src={logoOvoLucrativo} alt="Ovo Lucrativo" className="w-24 h-auto mx-auto mb-2 drop-shadow-md" />
-                <p className="font-heading font-bold text-xs text-foreground tracking-widest uppercase">Mini Curso Completo</p>
+              {/* Logo */}
+              <div className="pt-3 pb-1 text-center px-5">
+                <img src={logoOvoLucrativo} alt="Ovo Lucrativo" className="w-16 h-auto mx-auto mb-1 drop-shadow-md" />
+                <p className="font-heading font-bold text-[9px] text-muted-foreground tracking-widest uppercase">Mini Curso Completo</p>
               </div>
 
               {/* Preço */}
-              <div className="px-5 py-3 text-center">
-                <p className="text-muted-foreground line-through text-xs">De R$ 197,00</p>
-                <div className="flex items-baseline justify-center gap-0.5 mt-0.5">
-                  <span className="text-muted-foreground text-sm font-medium">R$</span>
-                  <span className="font-heading font-black text-[52px] leading-none text-primary">47</span>
-                  <span className="font-heading font-bold text-base text-primary">,00</span>
+              <div className="px-5 py-2 text-center">
+                <p className="text-muted-foreground line-through text-[10px]">De R$ 197,00</p>
+                <div className="flex items-baseline justify-center gap-0.5">
+                  <span className="text-muted-foreground text-[11px] font-medium">R$</span>
+                  <span className="font-heading font-black text-[44px] leading-none text-primary">47</span>
+                  <span className="font-heading font-bold text-sm text-primary">,00</span>
                 </div>
-                <div className="inline-flex items-center gap-1 mt-1 rounded-full px-3 py-1 text-[11px] font-bold" style={{ background: "hsl(var(--gold) / 0.1)", color: "hsl(var(--primary))" }}>
-                  <Zap className="w-3 h-3" />
+                <div className="inline-flex items-center gap-1 mt-0.5 rounded-full px-2.5 py-0.5 text-[9px] font-bold" style={{ background: "hsl(var(--gold) / 0.1)", color: "hsl(var(--primary))" }}>
+                  <Zap className="w-2.5 h-2.5" />
                   ou 5x de R$ 10,14
                 </div>
               </div>
 
-              {/* Checklist compacto */}
-              <div className="px-5 pb-3">
-                <div className="space-y-1.5">
+              {/* Divider */}
+              <div className="mx-5 h-px" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--gold) / 0.3), transparent)" }} />
+
+              {/* Checklist */}
+              <div className="px-5 py-2.5">
+                <p className="font-heading font-bold text-[8px] text-muted-foreground tracking-widest uppercase mb-1.5">O QUE ESTÁ INCLUSO:</p>
+                <div className="space-y-1">
                   {checklistOferta.map((item) => (
-                    <div key={item} className="flex items-center gap-2.5">
-                      <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(130 50% 45%), hsl(130 55% 38%))" }}>
-                        <Check className="w-3 h-3 text-white" />
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-[16px] h-[16px] rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(145 60% 42%), hsl(145 55% 35%))" }}>
+                        <Check className="w-2.5 h-2.5 text-white" />
                       </div>
-                      <span className="text-foreground text-xs font-medium">{item}</span>
+                      <span className="text-foreground text-[11px] font-medium leading-tight">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* CTA */}
-              <div className="px-5 pt-2 pb-3">
-                <CTAButton text="GARANTIR MINHA VAGA" className="w-full text-sm" />
+              <div className="px-5 pt-1 pb-2">
+                <CTAButton text="GARANTIR MINHA VAGA AGORA" className="w-full text-[11px]" />
               </div>
 
               {/* Trust */}
-              <div className="px-5 pb-4 flex items-center justify-center gap-3 text-[10px] text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <Lock className="w-3 h-3 text-primary" />
+              <div className="px-5 pb-3 flex items-center justify-center gap-2.5 text-[8px] text-muted-foreground">
+                <span className="flex items-center gap-0.5">
+                  <Lock className="w-2.5 h-2.5 text-primary" />
                   Compra segura
                 </span>
-                <span className="w-px h-3 bg-border" />
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-primary" />
-                  7 dias de garantia
+                <span className="w-px h-2.5 bg-border" />
+                <span className="flex items-center gap-0.5">
+                  <ShieldCheck className="w-2.5 h-2.5 text-primary" />
+                  Garantia 7 dias
+                </span>
+                <span className="w-px h-2.5 bg-border" />
+                <span className="flex items-center gap-0.5">
+                  <Eye className="w-2.5 h-2.5 text-primary" />
+                  Acesso vitalício
                 </span>
               </div>
             </div>
           </AnimatedSection>
 
-          {/* Garantia — logo abaixo, compacto e elegante */}
-          <AnimatedSection animation="fadeInUp" delay={0.12}>
-            <div className="mt-4 rounded-xl p-4 flex items-center gap-3" style={{ background: "hsl(38 85% 55% / 0.08)", border: "1px solid hsl(38 85% 55% / 0.2)" }}>
-              <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 42%))" }}>
-                <ShieldCheck className="w-6 h-6" style={{ color: "hsl(15 60% 14%)" }} />
+          {/* Garantia */}
+          <AnimatedSection animation="fadeInUp" delay={0.1}>
+            <div className="mt-3 rounded-xl p-3 flex items-center gap-2.5" style={{ background: "hsl(38 85% 55% / 0.08)", border: "1px solid hsl(38 85% 55% / 0.2)" }}>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, hsl(38 85% 55%), hsl(38 90% 42%))" }}>
+                <ShieldCheck className="w-5 h-5" style={{ color: "hsl(15 60% 14%)" }} />
               </div>
               <div>
-                <p className="font-heading font-bold text-xs text-cream tracking-wide">GARANTIA INCONDICIONAL DE 7 DIAS</p>
-                <p className="text-[11px] mt-0.5 leading-relaxed" style={{ color: "hsl(35 30% 70%)" }}>
-                  Se não gostar, devolvemos <strong className="text-gold">100% do seu dinheiro</strong>. Sem perguntas.
+                <p className="font-heading font-bold text-[10px] text-cream tracking-wide">GARANTIA DE 7 DIAS</p>
+                <p className="text-[9px] mt-0.5 leading-relaxed" style={{ color: "hsl(35 30% 70%)" }}>
+                  Não gostou? Devolvemos <strong className="text-gold">100% do valor</strong>. Sem burocracia.
                 </p>
               </div>
             </div>
           </AnimatedSection>
 
-          <AnimatedSection animation="fadeInUp" delay={0.2}>
-            <p className="mt-3 text-center text-xs font-bold font-heading text-gold flex items-center justify-center gap-1.5">
-              <Flame className="w-3.5 h-3.5" />
+          <AnimatedSection animation="fadeInUp" delay={0.18}>
+            <p className="mt-2.5 text-center text-[10px] font-bold font-heading text-gold flex items-center justify-center gap-1">
+              <Flame className="w-3 h-3" />
               Oferta válida apenas até a Páscoa
-              <Flame className="w-3.5 h-3.5" />
+              <Flame className="w-3 h-3" />
             </p>
           </AnimatedSection>
         </div>
       </section>
 
       {/* ═══════ CTA FINAL ═══════ */}
-      <section className="py-12 px-4 bg-background">
-        <div className="max-w-md mx-auto text-center">
+      <section className="py-10 px-4 bg-background">
+        <div className="max-w-sm mx-auto text-center">
           <AnimatedSection>
-            <Crown className="w-8 h-8 text-primary mx-auto mb-2" />
-            <h2 className="font-heading font-bold text-lg md:text-2xl text-foreground">Não deixe essa oportunidade passar!</h2>
-            <p className="mt-2 text-xs md:text-sm text-muted-foreground">
+            <Crown className="w-6 h-6 text-primary mx-auto mb-1.5" />
+            <h2 className="font-heading font-bold text-base md:text-xl text-foreground">Não deixe essa oportunidade passar!</h2>
+            <p className="mt-1.5 text-[11px] text-muted-foreground">
               A Páscoa está chegando. Comece hoje e fature alto.
             </p>
-            <div className="mt-5">
-              <CTAButton text="QUERO COMEÇAR AGORA" className="text-sm" />
+            <div className="mt-4">
+              <CTAButton text="QUERO COMEÇAR AGORA" className="text-[11px]" />
             </div>
-            <p className="text-[10px] mt-2 flex items-center justify-center gap-1.5 text-muted-foreground">
-              <ShieldCheck className="w-3 h-3 text-primary" />
+            <p className="text-[8px] mt-1.5 flex items-center justify-center gap-1 text-muted-foreground">
+              <ShieldCheck className="w-2.5 h-2.5 text-primary" />
               Compra segura · Acesso imediato · 7 dias de garantia
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      <footer className="py-5 px-4 text-center text-muted-foreground text-[10px] bg-background border-t border-border">
+      <footer className="py-4 px-4 text-center text-muted-foreground text-[8px] bg-background border-t border-border">
         <p>© 2026 — Todos os direitos reservados</p>
-        <p className="mt-1 max-w-xs mx-auto">Este produto não garante a obtenção de resultados. Qualquer referência ao desempenho não é garantia de resultado futuro.</p>
+        <p className="mt-1 max-w-xs mx-auto">Este produto não garante a obtenção de resultados.</p>
       </footer>
     </div>
   );
